@@ -25,7 +25,10 @@ pugixml_dep = dependency('pugixml', static:static_deps)
 libcurl_dep = dependency('libcurl', static:static_deps)
 microhttpd_dep = dependency('libmicrohttpd', static:static_deps)
 
-if not compiler.has_header('mustache.hpp')
+extra_include = []
+if compiler.has_header('kainjow/mustache.hpp')
+  extra_include = ['/usr/include/kainjow']
+elif not compiler.has_header('mustache.hpp')
   error('Cannot found header mustache.hpp')
 endif
 
@@ -37,7 +40,7 @@ endif
 
 all_deps = [thread_dep, libicu_dep, libzim_dep, pugixml_dep, libcurl_dep, microhttpd_dep]
 
-inc = include_directories('include')
+inc = include_directories('include', extra_include)
 
 conf = configuration_data()
 conf.set('VERSION', '"@0@"'.format(meson.project_version()))
