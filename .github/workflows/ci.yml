@@ -67,6 +67,9 @@ jobs:
           - target: native_dyn
             image_variant: xenial
             lib_postfix: '/x86_64-linux-gnu'
+          - target: native_dyn
+            image_variant: bionic
+            lib_postfix: '/x86_64-linux-gnu'
           - target: android_arm
             image_variant: xenial
             lib_postfix: '/x86_64-linux-gnu'
